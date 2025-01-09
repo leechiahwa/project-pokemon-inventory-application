@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;">
+        <h1>Trainers Inventory</h1>
+        <div class="content">
+            <ul class="pokemon-list">
+                <li>
+                    <%= trainer %>'s Team:
+                </li>
+                <% trainers.forEach(tr=> { %>
+                    <li class="pokemon-item">
+
+                        <a href="/search?pokemon=<%= tr.pokemon_name %>">
+                            <%= tr.pokemon_name %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+            <button onclick="window.location.href='/'">Back to home</button>
+        </div>
+    </div>
+</body>
+
+</html>

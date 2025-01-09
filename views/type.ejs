@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pokemons of <%= type%> type
+        </h1>
+        <div class="content">
+            <ul class="pokemon-list">
+                <% pokemons.forEach(pokemon=> { %>
+                    <li class="pokemon-item">
+                        <%= pokemon.pokemon_name %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <button onclick="window.location.href='/'">Back to home</button>
+        </div>
+</body>
+
+</html>

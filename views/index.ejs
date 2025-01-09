@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;">
+        <h1>Pokemon Inventory</h1>
+
+        <Button onclick="window.location.href='/new'">Create New Trainer</Button>
+        <h3>Search for a Pokemon</h3>
+        <form method="get" action="/search"><input type="text" name="pokemon" placeholder="Pokemon" /><button
+                type="submit">Submit</button></form>
+        <h3>Add Pokemon to trainer</h3>
+        <form method="post" action="/add"> <input type="text" name="pokemon" placeholder="Pokemon" />
+            <input type="text" name="trainer" placeholder="Trainer" /><button type="submit">Submit</button>
+        </form>
+        <div class="content">
+            <h2>Pokemon</h2>
+            <ul class="pokemon-list">
+                <% pokemons.forEach(function(pokemon) { %>
+                    <li class="pokemon-item">
+                        <a href="/search?pokemon=<%= pokemon.name %>">
+                            <%= pokemon.name %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+
+            <h2>Trainers</h2>
+            <ul class="trainer-list">
+                <% trainers.forEach(function(trainer) { %>
+                    <li class="trainer-item">
+                        <a href="/trainer?trainer=<%= trainer.name %>">
+                            <%= trainer.name %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+            <h2>Types</h2>
+            <ul class="pokemon-list">
+                <% types.forEach(function(type) { %>
+                    <li class="pokemon-item">
+                        <img src="/icons/Pokemon_Type_Icon_<%= type.name %>.svg" alt="<%= type.name %> icon"
+                            style="width: 24px; height: 24px;">
+                        <a href="/type?type=<%= type.name %>">
+                            <%= type.name %>
+                        </a>
+                    </li>
+                    <%})%>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
