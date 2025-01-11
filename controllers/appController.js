@@ -55,6 +55,13 @@ async function searchTrainerGet(req, res) {
   res.render("trainer", { trainers: result, trainer: trainer });
 }
 
+async function deletePokemonPost(req, res) {
+  const { pokemon } = req.body;
+  await db.deletePokemonFromTrainer(pokemon);
+  console.log("Released:", pokemon);
+  res.redirect("/");
+}
+
 module.exports = {
   getPokemonsAndTrainers,
   createTrainerGet,
@@ -64,4 +71,5 @@ module.exports = {
   searchPokemonGet,
   searchTypeGet,
   searchTrainerGet,
+  deletePokemonPost,
 };

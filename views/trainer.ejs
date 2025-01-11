@@ -18,16 +18,29 @@
                     <%= trainer %>'s Team:
                 </li>
                 <% trainers.forEach(tr=> { %>
-                    <li class="pokemon-item">
+                    <% if (tr.pokemon_name) { %>
+                        <li class="pokemon-item">
 
-                        <a href="/search?pokemon=<%= tr.pokemon_name %>">
-                            <%= tr.pokemon_name %>
-                        </a>
-                    </li>
-                    <% }) %>
+                            <a href="/search?pokemon=<%= tr.pokemon_name %>">
+                                <%= tr.pokemon_name %>
+                            </a>
+
+                            <form action="/release" method="POST">
+                                <input type="hidden" name="pokemon" value="<%= tr.pokemon_name %>">
+                                <button type="submit">Release</button>
+                            </form>
+                        </li>
+                        <% } else { %>
+                            <p>No Pokemon yet</p>
+                            <% } %>
+                                <% }) %>
             </ul>
-            <button onclick="window.location.href='/'">Back to home</button>
         </div>
+        <h3>Add Pokemon to trainer</h3>
+        <form method="post" action="/add"> <input type="text" name="pokemon" placeholder="Pokemon" />
+            <input type="text" name="trainer" placeholder="Trainer" /><button type="submit">Submit</button>
+        </form>
+        <button onclick="window.location.href='/'">Back to home</button>
     </div>
 </body>
 

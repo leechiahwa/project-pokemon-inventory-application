@@ -10,31 +10,35 @@
 
 <body>
     <div class="container">
-        <div class="content"></div>
-        <ul class="pokemon-list">
-            <% pokemon.forEach(p=> { %>
-                <li class="pokemon-item">
-                    <strong>Name:</strong>
-                    <%= p.name %>
-                </li>
-                <li class="pokemon-item">
-                    <strong>Type:</strong>
-                    <img src=" /icons/Pokemon_Type_Icon_<%=p.type_name %>.svg" alt="<%= p.type_name %> icon"
-                        style="width: 24px; height: 24px;">
-                    <%= p.type_name %>
-                </li>
-                <li class="pokemon-item">
-                    <strong>Level:</strong>
-                    <%= p.level %>
-                </li>
-                <li class="pokemon-item">
-                    <strong>Trainer:</strong>
-                    <a href="<%= p.trainer_name ? `/trainer?trainer=${p.trainer_name}` : '#' %>">
-                        <%= p.trainer_name || 'No trainer yet' %>
-                    </a>
-                </li>
-                <%})%>
-                    <button onclick="window.location.href='/'">Back to home</button>
+        <h1>Pokemon Info</h1>
+        <div class="content">
+            <ul class="pokemon-list">
+                <% pokemon.forEach(p=> { %>
+                    <li class="pokemon-item">
+                        <strong>Name:</strong>
+                        <%= p.name %>
+                    </li>
+                    <li class="pokemon-item">
+                        <strong>Type:</strong>
+                        <img src=" /icons/Pokemon_Type_Icon_<%=p.type_name %>.svg" alt="<%= p.type_name %> icon"
+                            style="width: 24px; height: 24px;">
+                        <a href="/type?type=<%= p.type_name %>">
+                            <%= p.type_name %>
+                        </a>
+                    </li>
+                    <li class="pokemon-item">
+                        <strong>Level:</strong>
+                        <%= p.level %>
+                    </li>
+                    <li class="pokemon-item">
+                        <strong>Trainer:</strong>
+                        <a href="<%= p.trainer_name ? `/trainer?trainer=${p.trainer_name}` : '#' %>">
+                            <%= p.trainer_name || 'No trainer yet' %>
+                        </a>
+                    </li>
+                    <%})%>
+                        <button onclick="window.location.href='/'">Back to home</button>
+        </div>
     </div>
 </body>
 

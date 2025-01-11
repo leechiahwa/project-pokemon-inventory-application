@@ -76,6 +76,17 @@ async function getTrainer(trainer) {
   return rows;
 }
 
+async function deletePokemonFromTrainer(pokemon) {
+  await pool.query(
+    `
+    UPDATE pokemon
+    SET trainer_id = NULL
+    WHERE name = $1
+    `,
+    [pokemon]
+  );
+}
+
 module.exports = {
   getAllPokemons,
   getAllTrainers,
@@ -85,4 +96,5 @@ module.exports = {
   getPokemon,
   getType,
   getTrainer,
+  deletePokemonFromTrainer,
 };

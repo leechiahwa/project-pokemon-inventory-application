@@ -10,13 +10,19 @@
 
 <body>
     <div class="container">
-        <h1>Pokemons of <%= type%> type
+        <h1>
+            <img src=" /icons/Pokemon_Type_Icon_<%= type %>.svg" alt="<%= type %> icon"
+                style="width: 24px; height: 24px;">
+
+            <%= type%> type
         </h1>
         <div class="content">
             <ul class="pokemon-list">
                 <% pokemons.forEach(pokemon=> { %>
                     <li class="pokemon-item">
-                        <%= pokemon.pokemon_name %>
+                        <a href="/search?pokemon=<%= pokemon.pokemon_name %>">
+                            <%= pokemon.pokemon_name %>
+                        </a>
                     </li>
                     <% }) %>
             </ul>
