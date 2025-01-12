@@ -35,6 +35,7 @@
             <ul class="trainer-list">
                 <% trainers.forEach(function(trainer) { %>
                     <li class="trainer-item">
+                        <img src="/trainer/<%= trainer.name %>.png" alt="<%= trainer %> Icon" style="height: 100px;">
                         <a href="/trainer?trainer=<%= trainer.name %>">
                             <%= trainer.name %>
                         </a>
