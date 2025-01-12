@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;">
+        <a href="/"><img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;"></a>
         <h1>Trainers Inventory</h1>
         <div class="content">
             <ul class="pokemon-list">
@@ -27,6 +27,7 @@
 
                             <form action="/release" method="POST">
                                 <input type="hidden" name="pokemon" value="<%= tr.pokemon_name %>">
+                                <input type="hidden" name="trainer" value="<%= trainer %>">
                                 <button type="submit">Release</button>
                             </form>
                         </li>
@@ -37,8 +38,10 @@
             </ul>
         </div>
         <h3>Add Pokemon to trainer</h3>
-        <form method="post" action="/add"> <input type="text" name="pokemon" placeholder="Pokemon" />
-            <input type="text" name="trainer" placeholder="Trainer" /><button type="submit">Submit</button>
+        <form method="post" action="/add">
+            <input type="text" name="pokemon" placeholder="Pokemon" />
+            <input type="hidden" name="trainer" placeholder="Trainer" value="<%= trainer %>" /><button
+                type="submit">Submit</button>
         </form>
         <button onclick="window.location.href='/'">Back to home</button>
     </div>

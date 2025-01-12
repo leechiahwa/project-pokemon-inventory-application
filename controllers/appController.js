@@ -25,7 +25,7 @@ async function createTrainerPost(req, res) {
 async function addPokemonToTrainerPost(req, res) {
   const { pokemon, trainer } = req.body;
   await db.asignPokemonToTrainer(pokemon, trainer);
-  res.redirect("/");
+  res.redirect(`/trainer?trainer=${encodeURIComponent(trainer)}`);
 }
 
 async function searchPokemon(req, res) {
@@ -56,10 +56,10 @@ async function searchTrainerGet(req, res) {
 }
 
 async function deletePokemonPost(req, res) {
-  const { pokemon } = req.body;
+  const { pokemon, trainer } = req.body;
   await db.deletePokemonFromTrainer(pokemon);
   console.log("Released:", pokemon);
-  res.redirect("/");
+  res.redirect(`trainer?trainer=${encodeURIComponent(trainer)}`);
 }
 
 module.exports = {

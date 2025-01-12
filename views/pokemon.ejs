@@ -20,15 +20,13 @@
                     </li>
                     <li class="pokemon-item">
                         <strong>Type:</strong>
-                        <img src=" /icons/Pokemon_Type_Icon_<%=p.type_name %>.svg" alt="<%= p.type_name %> icon"
-                            style="width: 24px; height: 24px;">
-                        <a href="/type?type=<%= p.type_name %>">
-                            <%= p.type_name %>
-                        </a>
-                    </li>
-                    <li class="pokemon-item">
-                        <strong>Level:</strong>
-                        <%= p.level %>
+                        <% p.type_names.forEach(type=> { %>
+                            <img src=" /icons/Pokemon_Type_Icon_<%=type %>.svg" alt="<%= type %> icon"
+                                style="width: 24px; height: 24px;">
+                            <a href="/type?type=<%= type %>">
+                                <%= type %>
+                            </a>
+                            <% }) %>
                     </li>
                     <li class="pokemon-item">
                         <strong>Trainer:</strong>

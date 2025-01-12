@@ -1,17 +1,17 @@
 const pool = require("./pool");
 
 async function getAllPokemons() {
-  const { rows } = await pool.query("SELECT * FROM pokemon");
+  const { rows } = await pool.query("SELECT * FROM pokemon ORDER BY id");
   return rows;
 }
 
 async function getAllTrainers() {
-  const { rows } = await pool.query("SELECT * FROM trainer");
+  const { rows } = await pool.query("SELECT * FROM trainer ORDER BY id");
   return rows;
 }
 
 async function getAllTypes() {
-  const { rows } = await pool.query("SELECT * FROM type");
+  const { rows } = await pool.query("SELECT * FROM type ORDER BY id");
   return rows;
 }
 
@@ -33,14 +33,15 @@ async function getPokemon(pokemon) {
     `
     SELECT 
       p.id, 
-      p.name, 
-      p.level, 
-      t.name AS type_name, 
+      p.name,
+      ARRAY_AGG(t.name) AS type_names,
       tr.name AS trainer_name 
     FROM pokemon p
-    LEFT JOIN type t ON p.type_id = t.id
+    LEFT JOIN pokemon_type pt ON p.id = pt.pokemon_id
+    LEFT JOIN type t ON pt.type_id = t.id
     LEFT JOIN trainer tr ON p.trainer_id = tr.id
     WHERE p.name = $1
+    GROUP BY p.id, p.name, tr.name
   `,
     [pokemon]
   );
@@ -50,9 +51,14 @@ async function getPokemon(pokemon) {
 async function getType(type) {
   const { rows } = await pool.query(
     `
-    SELECT t.id as type_id, t.name as type_name, p.id AS pokemon_id, p.name AS pokemon_name 
+    SELECT
+     t.id as type_id,
+     t.name as type_name,
+     p.id AS pokemon_id,
+     p.name AS pokemon_name 
     FROM type t 
-    LEFT JOIN pokemon p ON t.id = p.type_id
+    LEFT JOIN pokemon_type pt ON t.id = pt.type_id
+    LEFT JOIN pokemon p ON pt.pokemon_id = p.id
     WHERE t.name = $1
     `,
     [type]
