@@ -20,6 +20,8 @@
             <ul class="pokemon-list">
                 <% pokemons.forEach(pokemon=> { %>
                     <li class="pokemon-item">
+                        <img src="/sprites/<%= pokemon.pokemon_id %>.png" alt="<%= pokemon.name %> Sprite"
+                            style="height: 50px;">
                         <a href="/search?pokemon=<%= pokemon.pokemon_name %>">
                             <%= pokemon.pokemon_name %>
                         </a>

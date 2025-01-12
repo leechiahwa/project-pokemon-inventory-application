@@ -15,12 +15,14 @@
         <div class="content">
             <ul class="pokemon-list">
                 <li>
+                    <img src="/trainer/<%= trainer %>.png" alt="<%= trainer %> Icon" style="height: 100px;">
                     <%= trainer %>'s Team:
                 </li>
                 <% trainers.forEach(tr=> { %>
                     <% if (tr.pokemon_name) { %>
                         <li class="pokemon-item">
-
+                            <img src="/sprites/<%= tr.pokemon_id %>.png" alt="<%= tr.pokemon_name %> Icon"
+                                style="height: 50px;">
                             <a href="/search?pokemon=<%= tr.pokemon_name %>">
                                 <%= tr.pokemon_name %>
                             </a>

@@ -14,6 +14,7 @@
         <div class="content">
             <ul class="pokemon-list">
                 <% pokemon.forEach(p=> { %>
+                    <img src="/pokemon/<%= p.id %>.png" alt="<%= p.name %> Icon" style="height: 240px; width: 240px;">
                     <li class="pokemon-item">
                         <strong>Name:</strong>
                         <%= p.name %>
@@ -21,7 +22,7 @@
                     <li class="pokemon-item">
                         <strong>Type:</strong>
                         <% p.type_names.forEach(type=> { %>
-                            <img src=" /icons/Pokemon_Type_Icon_<%=type %>.svg" alt="<%= type %> icon"
+                            <img src="/icons/Pokemon_Type_Icon_<%=type %>.svg" alt="<%= type %> icon"
                                 style="width: 24px; height: 24px;">
                             <a href="/type?type=<%= type %>">
                                 <%= type %>
