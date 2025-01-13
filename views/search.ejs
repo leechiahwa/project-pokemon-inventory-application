@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="/"><img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;"></a>
+        <h1>Pokemon Inventory</h1>
+        <div class="content">
+            <h2>Pokemon with "<%= searchQuery %>"</h2>
+            <ul class="pokemon-list">
+                <% pokemon.forEach(function(p) { %>
+                    <li class="pokemon-item">
+                        <img src="/sprites/<%= p.id %>.png" alt="<%= p.name %> Sprite" style="height: 50px;">
+                        <a href="/pokemon?pokemon=<%= p.name %>">
+                            <%= p.name %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+        <button onclick="window.location.href='/'">Back to home</button>
+    </div>
+</body>
+
+</html>

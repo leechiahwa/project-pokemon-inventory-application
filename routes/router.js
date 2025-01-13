@@ -7,6 +7,7 @@ router.get("/", appController.getPokemonsAndTrainers);
 router.get("/new", appController.createTrainerGet);
 router.post("/new", appController.createTrainerPost);
 router.post("/add", appController.addPokemonToTrainerPost);
+router.get("/pokemon", appController.pokemonGet);
 router.get("/search", appController.searchPokemonGet);
 router.get("/type", appController.searchTypeGet);
 router.get("/trainer", appController.searchTrainerGet);

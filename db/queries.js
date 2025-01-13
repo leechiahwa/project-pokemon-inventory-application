@@ -40,10 +40,10 @@ async function getPokemon(pokemon) {
     LEFT JOIN pokemon_type pt ON p.id = pt.pokemon_id
     LEFT JOIN type t ON pt.type_id = t.id
     LEFT JOIN trainer tr ON p.trainer_id = tr.id
-    WHERE p.name = $1
+    WHERE p.name ILIKE $1
     GROUP BY p.id, p.name, tr.name
   `,
-    [pokemon]
+    [`${pokemon}%`]
   );
   return rows;
 }

@@ -28,13 +28,14 @@ async function addPokemonToTrainerPost(req, res) {
   res.redirect(`/trainer?trainer=${encodeURIComponent(trainer)}`);
 }
 
-async function searchPokemon(req, res) {
-  res.send(
-    `<form method="get"><input type="text" name="pokemon" placeholder="Pokemon" /><button type="submit">Submit</button></form>`
-  );
+async function searchPokemonGet(req, res) {
+  const { pokemon } = req.query;
+  const result = await db.getPokemon(pokemon);
+  console.log(result);
+  res.render("search", { pokemon: result, searchQuery: pokemon });
 }
 
-async function searchPokemonGet(req, res) {
+async function pokemonGet(req, res) {
   const { pokemon } = req.query;
   const result = await db.getPokemon(pokemon);
   console.log(result);
@@ -67,8 +68,8 @@ module.exports = {
   createTrainerGet,
   createTrainerPost,
   addPokemonToTrainerPost,
-  searchPokemon,
   searchPokemonGet,
+  pokemonGet,
   searchTypeGet,
   searchTrainerGet,
   deletePokemonPost,
