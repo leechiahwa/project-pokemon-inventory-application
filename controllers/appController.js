@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+require("dotenv").config();
 
 async function getPokemonsAndTrainers(req, res) {
   const pokemon = await db.getAllPokemons();
@@ -63,6 +64,16 @@ async function deletePokemonPost(req, res) {
   res.redirect(`trainer?trainer=${encodeURIComponent(trainer)}`);
 }
 
+async function handleCreateTrainerAuth(req, res) {
+  console.log("Received password:", req.body.password);
+  console.log("Expected password:", process.env.PASSWORD);
+  if (req.body.password === process.env.PASSWORD) {
+    res.status(200).json({ success: true });
+  } else {
+    res.status(401).json({ success: false });
+  }
+}
+
 module.exports = {
   getPokemonsAndTrainers,
   createTrainerGet,
@@ -73,4 +84,5 @@ module.exports = {
   searchTypeGet,
   searchTrainerGet,
   deletePokemonPost,
+  handleCreateTrainerAuth,
 };

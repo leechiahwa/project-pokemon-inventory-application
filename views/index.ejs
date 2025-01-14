@@ -13,29 +13,32 @@
         <a href="/"><img src="/icons/pokeball_icon.png" alt="Pokeball" style="width: 48px; height: 48px;"></a>
         <h1>Pokemon Inventory</h1>
 
-        <Button onclick="window.location.href='/new'">Create New Trainer</Button>
+        <Button onclick="authenticateAndRedirect()">Create New Trainer</Button>
         <h3>Search for a Pokemon</h3>
         <form method="get" action="/search"><input type="text" name="pokemon" placeholder="Pokemon" /><button
                 type="submit">Submit</button></form>
         <div class="content">
             <h2>Pokemon</h2>
-            <ul class="pokemon-list">
-                <% pokemons.forEach(function(pokemon) { %>
-                    <li class="pokemon-item">
-                        <img src="/sprites/<%= pokemon.id %>.png" alt="<%= pokemon.name %> Sprite"
-                            style="height: 50px;">
-                        <a href="/pokemon?pokemon=<%= pokemon.name %>">
-                            <%= pokemon.name %>
-                        </a>
-                    </li>
-                    <% }) %>
-            </ul>
+            <div class="scrollable-list">
+                <ul class="pokemon-list">
+                    <% pokemons.forEach(function(pokemon) { %>
+                        <li class="pokemon-item">
+                            <img src="/sprites/<%= pokemon.id %>.png" alt="<%= pokemon.name %> Sprite"
+                                style="height: 50px;">
+                            <a href="/pokemon?pokemon=<%= pokemon.name %>">
+                                <%= pokemon.name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
 
             <h2>Trainers</h2>
             <ul class="trainer-list">
                 <% trainers.forEach(function(trainer) { %>
                     <li class="trainer-item">
-                        <img src="/trainer/<%= trainer.name %>.png" alt="<%= trainer %> Icon" style="height: 100px;">
+                        <img src="/trainer/<%= trainer.name %>.png" alt="<%= trainer %> Icon"
+                            style="height: 100px; width: 100px; object-fit: contain;">
                         <a href="/trainer?trainer=<%= trainer.name %>">
                             <%= trainer.name %>
                         </a>
@@ -56,6 +59,7 @@
             </ul>
         </div>
     </div>
+    <script src="/auth.js"></script>
 </body>
 
 </html>

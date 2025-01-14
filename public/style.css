@@ -48,3 +48,11 @@ a {
 .trainer-item:hover {
   background-color: #b2ebf2;
 }
+
+.scrollable-list {
+  max-height: 300px; /* Adjust this value to control the height of the scrollable area */
+  overflow-y: auto; /* Enables vertical scrolling */
+  border: 1px solid #ccc; /* Optional: adds a border around the scrollable area */
+  padding: 10px;
+  border-radius: 5px;
+}

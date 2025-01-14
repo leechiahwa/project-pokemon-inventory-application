@@ -27,7 +27,8 @@
                                 <%= tr.pokemon_name %>
                             </a>
 
-                            <form action="/release" method="POST">
+                            <form action="/release" method="POST"
+                                onsubmit="event.preventDefault(); authenticateAndRelease('<%= tr.pokemon_name %>', '<%= trainer %>', this);">
                                 <input type="hidden" name="pokemon" value="<%= tr.pokemon_name %>">
                                 <input type="hidden" name="trainer" value="<%= trainer %>">
                                 <button type="submit">Release</button>
@@ -40,13 +41,15 @@
             </ul>
         </div>
         <h3>Add Pokemon to trainer</h3>
-        <form method="post" action="/add">
+        <form method="post" action="/add"
+            onsubmit="event.preventDefault(); authenticateAndAdd('<%= trainer %>', this);">
             <input type="text" name="pokemon" placeholder="Pokemon" />
-            <input type="hidden" name="trainer" placeholder="Trainer" value="<%= trainer %>" /><button
-                type="submit">Submit</button>
+            <input type="hidden" name="trainer" placeholder="Trainer" value="<%= trainer %>" />
+            <button type="submit">Submit</button>
         </form>
         <button onclick="window.location.href='/'">Back to home</button>
     </div>
+    <script src="/auth.js"></script>
 </body>
 
 </html>

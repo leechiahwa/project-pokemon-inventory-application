@@ -12,5 +12,6 @@ router.get("/search", appController.searchPokemonGet);
 router.get("/type", appController.searchTypeGet);
 router.get("/trainer", appController.searchTrainerGet);
 router.post("/release", appController.deletePokemonPost);
+router.post("/auth", appController.handleCreateTrainerAuth);
 
 module.exports = router;
