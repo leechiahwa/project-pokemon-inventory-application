@@ -253,6 +253,26 @@ INSERT INTO pokemon_type (pokemon_id, type_id) VALUES
 (149, 16), (149, 10), -- Dragonite (Dragon/Flying)
 (150, 11),      -- Mewtwo (Psychic)
 (151, 11);      -- Mew (Psychic)
+
+INSERT INTO trainer (name) VALUES
+('Ash'),
+('Misty'),
+('Brock');
+
+-- Ash team
+UPDATE pokemon 
+SET trainer_id = 1
+WHERE id IN (25, 12, 17, 1, 4, 7);
+
+-- Misty team
+UPDATE pokemon 
+SET trainer_id = 2
+WHERE id IN (121, 54, 118, 120, 116, 119);
+
+-- Brock team
+UPDATE pokemon 
+SET trainer_id = 3
+WHERE id IN (95, 74, 41, 37, 140, 66);
 `;
 
 async function main() {
